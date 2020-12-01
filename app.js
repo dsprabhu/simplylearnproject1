@@ -1,10 +1,16 @@
-const http = require('http');
-const os = require('os');
-console.log("My NodeJS server starting...");
-var handler = function(request, response) {
-	console.log("Received request from " + request.connection.remoteAddress);
-	response.writeHead(200);
-	response.end("Hostname : " + os.hostname() + "\n");
-};
-var www = http.createServer(handler);
-www.listen(8080);
+'use strict';
+
+const express = require('express');
+
+// Constants
+const PORT = 8080;
+const HOST = '0.0.0.0';
+
+// App
+const app = express();
+app.get('/', (req, res) => {
+	  res.send('Hello world\n');
+});
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
